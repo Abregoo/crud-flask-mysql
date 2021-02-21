@@ -25,5 +25,10 @@ def index():
     return render_template('empleados/index.html')
 
 
+@app.route('/create')
+def create():
+    return render_template('empleados/create.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
