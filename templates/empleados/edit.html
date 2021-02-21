@@ -1,9 +1,11 @@
- {% for empleado in empleados %}
+{% include 'header.html' %}
+
+{% for empleado in empleados %}
 <form action="/update" method="post" enctype="multipart/form-data">
 
 
-        <div class="mb-3">
-        <label for="id" class="form-label">Name</label>
+    <div class="mb-3">
+        <label for="id" class="form-label"></label>
         <input type="hidden" class="form-control" id="id" value="{{ empleado[0] }}" name="id">
     </div>
 
@@ -33,3 +35,4 @@
 
 {% endfor %}
 
+{% include 'footer.html' %}
