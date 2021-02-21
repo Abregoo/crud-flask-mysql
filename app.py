@@ -16,12 +16,15 @@ mysql.init_app(app)
 
 @app.route('/')
 def index():
-    sql = "INSERT INTO `empleados_flask`.`empleados`(`name`, `lastName`, `email`) VALUES('Doanald', 'López', 'pepe@gmail.com');"
+    sql = "SELECT * FROM `empleados`;"
     conn = mysql.connect()
     cursor = conn.cursor()
     cursor.execute(sql)
-    conn.commit()
 
+    empleados = cursor.fetchall()
+    print(empleados)
+
+    conn.commit()
     return render_template('empleados/index.html')
 
 
