@@ -2,7 +2,7 @@ from flask import Flask
 from flask import render_template, request, redirect
 from flaskext.mysql import MySQL
 from datetime import datetime
-
+import os
 app = Flask(__name__)
 
 # Conexion a la base de datos
@@ -12,6 +12,9 @@ app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = ''
 app.config['MYSQL_DATABASE_DB'] = 'empleados_flask'
 mysql.init_app(app)
+
+CARPETA = os.path.join('uploads')
+app.config['CARPETA']=CARPETA
 
 
 @app.route('/')
@@ -66,6 +69,21 @@ def update():
 
     conn = mysql.connect()
     cursor = conn.cursor()
+
+    now = datetime.now()
+    tiempo = now.strftime("%Y%H%M%S")
+
+    if _image.filename != '':
+        newNameImage = tiempo + _image.filename
+        _image.save("uploads/" + newNameImage)
+
+        cursor.execute("SELECT image FROM empleados WHERE id=%s", id)
+        fila = cursor.fetchall()
+
+        os.remove(os.path.join(app.config['CARPETA'], fila[0][0]))
+        cursor.execute("UPDATE empleados SET image=%s WHERE id=%s", (newNameImage, id))
+        conn.commit()
+
     cursor.execute(sql, datos)
     conn.commit()
 
