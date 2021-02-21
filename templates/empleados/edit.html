@@ -1,0 +1,35 @@
+ {% for empleado in empleados %}
+<form action="/update" method="post" enctype="multipart/form-data">
+
+
+        <div class="mb-3">
+        <label for="id" class="form-label">Name</label>
+        <input type="hidden" class="form-control" id="id" value="{{ empleado[0] }}" name="id">
+    </div>
+
+    <div class="mb-3">
+        <label for="txtName" class="form-label">Name</label>
+        <input type="text" class="form-control" id="txtName" value="{{ empleado[1] }}" name="txtName">
+    </div>
+
+    <div class="mb-3">
+        <label for="txtLastName" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="txtLastName" value="{{ empleado[2] }}" name="txtLastName">
+    </div>
+
+    <div class="mb-3">
+        <label for="txtEmail" class="form-label">Email</label>
+        <input type="email" class="form-control" id="txtEmail" value="{{ empleado[3] }}" name="txtEmail">
+    </div>
+    <div class="mb-3">
+        <label for="txtImage" class="form-label">Image</label>
+        {{ empleado[1] }}
+        <input type="file" class="form-control" id="txtImage" name="txtImage">
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+
+{% endfor %}
+

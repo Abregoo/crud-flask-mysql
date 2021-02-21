@@ -37,7 +37,9 @@
                     <td>{{ empleado[3] }}</td>
                     <td>{{ empleado[4] }}</td>
                     <td>
-                        Edit |
+                         <a class="btn btn-warning" href="/edit/{{ empleado[0] }}">Edit</a>
+
+                         |
                         <a class="btn btn-danger" href="/destroy/{{ empleado[0] }}">Delete</a>
                     </td>
                 </tr>

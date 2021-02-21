@@ -39,6 +39,18 @@ def destroy(id):
     return redirect("/")
 
 
+@app.route('/edit/<int:id>')
+def edit(id):
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM empleados WHERE id = %s", (id))
+
+    empleados = cursor.fetchall()
+    conn.commit()
+
+    return render_template('empleados/edit.html', empleados=empleados)
+
+
 @app.route('/create')
 def create():
     return render_template('empleados/create.html')
@@ -46,7 +58,6 @@ def create():
 
 @app.route('/store', methods=['POST'])
 def storage():
-
     _name = request.form['txtName']
     _lastName = request.form['txtLastName']
     _email = request.form['txtEmail']
@@ -58,7 +69,7 @@ def storage():
 
     if _image.filename != '':
         newNameImage = tiempo + _image.filename
-        _image.save("uploads/"+newNameImage)
+        _image.save("uploads/" + newNameImage)
 
     sql = "INSERT INTO `empleados_flask`.`empleados`(`name`, `lastName`, `email`, `image`) VALUES(%s, %s, %s, %s);"
 
@@ -66,7 +77,7 @@ def storage():
 
     conn = mysql.connect()
     cursor = conn.cursor()
-    cursor.execute(sql,datos)
+    cursor.execute(sql, datos)
     conn.commit()
 
     return render_template('empleados/index.html')
