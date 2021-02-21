@@ -51,6 +51,27 @@ def edit(id):
     return render_template('empleados/edit.html', empleados=empleados)
 
 
+@app.route('/update', methods=['POST'])
+def update():
+    _name = request.form['txtName']
+    _lastName = request.form['txtLastName']
+    _email = request.form['txtEmail']
+
+    _image = request.files['txtImage']
+    id = request.form['id']
+
+    sql = "UPDATE empleados SET name=%s, lastName=%s, email=%s WHERE id=%s;"
+
+    datos = (_name, _lastName, _email, id)
+
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    cursor.execute(sql, datos)
+    conn.commit()
+
+    return redirect("/")
+
+
 @app.route('/create')
 def create():
     return render_template('empleados/create.html')
