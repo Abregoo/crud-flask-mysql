@@ -25,7 +25,7 @@ def index():
     print(empleados)
 
     conn.commit()
-    return render_template('empleados/index.html')
+    return render_template('empleados/index.html', empleados=empleados)
 
 
 @app.route('/create')
