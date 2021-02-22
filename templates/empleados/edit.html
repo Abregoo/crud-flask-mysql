@@ -2,38 +2,45 @@
 
 {% for empleado in empleados %}
 <form action="/update" method="post" enctype="multipart/form-data">
+    <br>
+    <div class="card">
+        <div class="card-header">
+            Editar empleado
+        </div>
+        <div class="card-body">
+
+                <input type="hidden" class="form-control" id="id" value="{{ empleado[0] }}" name="id">
 
 
-    <div class="mb-3">
-        <label for="id" class="form-label"></label>
-        <input type="hidden" class="form-control" id="id" value="{{ empleado[0] }}" name="id">
+            <div class="mb-3">
+                <label for="txtName" class="form-label">Name</label>
+                <input type="text" class="form-control" id="txtName" value="{{ empleado[1] }}" name="txtName">
+            </div>
+
+            <div class="mb-3">
+                <label for="txtLastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="txtLastName" value="{{ empleado[2] }}" name="txtLastName">
+            </div>
+
+            <div class="mb-3">
+                <label for="txtEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="txtEmail" value="{{ empleado[3] }}" name="txtEmail">
+            </div>
+            <div class="mb-3">
+                <label for="txtImage" class="form-label">Image</label>
+                {{ empleado[4] }}
+
+                <img class="img-thumbnail" width="100" src="{{ url_for('uploads', nombreFoto=empleado[4]) }}" alt="">
+
+                <input type="file" class="form-control" id="txtImage" name="txtImage">
+            </div>
+
+
+            <a href="{{ url_for('index') }}" class="btn btn-outline-primary">Cancel</a>
+            <button type="submit" class="btn btn-outline-info">Save</button>
+        </div>
     </div>
 
-    <div class="mb-3">
-        <label for="txtName" class="form-label">Name</label>
-        <input type="text" class="form-control" id="txtName" value="{{ empleado[1] }}" name="txtName">
-    </div>
-
-    <div class="mb-3">
-        <label for="txtLastName" class="form-label">Last Name</label>
-        <input type="text" class="form-control" id="txtLastName" value="{{ empleado[2] }}" name="txtLastName">
-    </div>
-
-    <div class="mb-3">
-        <label for="txtEmail" class="form-label">Email</label>
-        <input type="email" class="form-control" id="txtEmail" value="{{ empleado[3] }}" name="txtEmail">
-    </div>
-    <div class="mb-3">
-        <label for="txtImage" class="form-label">Image</label>
-        {{ empleado[4] }}
-
-        <img class="img-thumbnail" width="100" src="{{ url_for('uploads', nombreFoto=empleado[4]) }}" alt="">
-
-        <input type="file" class="form-control" id="txtImage" name="txtImage">
-    </div>
-
-
-    <button type="submit" class="btn btn-primary">Update</button>
 </form>
 
 {% endfor %}
