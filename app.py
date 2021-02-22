@@ -120,8 +120,6 @@ def storage():
         flash('Recuerda llenar los datos de los campos')
         return redirect(url_for('create'))
 
-
-
     now = datetime.now()
     tiempo = now.strftime("%Y%H%M%S")
 
