@@ -1,5 +1,7 @@
 
 {% include 'header.html' %}
+<br>
+<a class="btn btn-outline-primary" href="{{ url_for('create') }}">New</a>
 
     <table  class="table table-striped" >
         <thead>
@@ -26,10 +28,10 @@
                     </td>
 
                     <td>
-                         <a class="btn btn-warning" href="/edit/{{ empleado[0] }}">Edit</a>
+                         <a class="btn btn-outline-warning" href="/edit/{{ empleado[0] }}">Edit</a>
 
                          |
-                        <a class="btn btn-danger" href="/destroy/{{ empleado[0] }}">Delete</a>
+                        <a class="btn btn-outline-danger" href="/destroy/{{ empleado[0] }}">Delete</a>
                     </td>
                 </tr>
             {% endfor %}
