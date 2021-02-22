@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from flaskext.mysql import MySQL
 from flask import send_from_directory
 
@@ -7,6 +7,7 @@ from datetime import datetime
 import os
 
 app = Flask(__name__)
+app.secret_key = "manuelduarte077"
 
 # Conexion a la base de datos
 mysql = MySQL()
@@ -114,6 +115,12 @@ def storage():
     _email = request.form['txtEmail']
 
     _image = request.files['txtImage']
+
+    if _name == '' or _lastName == '' or _email == '' or _image == '0':
+        flash('Recuerda llenar los datos de los campos')
+        return redirect(url_for('create'))
+
+
 
     now = datetime.now()
     tiempo = now.strftime("%Y%H%M%S")
