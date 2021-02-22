@@ -2,7 +2,9 @@
 {% include 'header.html' %}
 <br>
 <a class="btn btn-outline-primary" href="{{ url_for('create') }}">New</a>
-
+<br>
+<br>
+<br>
     <table  class="table table-striped" >
         <thead>
         <tr>
@@ -31,7 +33,7 @@
                          <a class="btn btn-outline-warning" href="/edit/{{ empleado[0] }}">Edit</a>
 
                          |
-                        <a class="btn btn-outline-danger" href="/destroy/{{ empleado[0] }}">Delete</a>
+                        <a  onclick="return confirm('¿Desea borrar al empleado?')" class="btn btn-outline-danger" href="/destroy/{{ empleado[0] }}">Delete</a>
                     </td>
                 </tr>
             {% endfor %}
