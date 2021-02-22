@@ -25,7 +25,10 @@
     </div>
     <div class="mb-3">
         <label for="txtImage" class="form-label">Image</label>
-        {{ empleado[1] }}
+        {{ empleado[4] }}
+
+        <img class="img-thumbnail" width="100" src="{{ url_for('uploads', nombreFoto=empleado[4]) }}" alt="">
+
         <input type="file" class="form-control" id="txtImage" name="txtImage">
     </div>
 
